@@ -3,6 +3,7 @@
 ## 1. Nguyên tắc vận hành cốt lõi
 
 - Trả lời bằng Tiếng Việt có dấu khi làm việc với repo này.
+- Tuân thủ bộ quy chuẩn công ty tại `.factory/standards/quy_chuan_code_cong_ty.md` khi áp dụng được. Nếu có xung đột với AGENTS.md, ưu tiên AGENTS.md cho các quy tắc đặc thù của repo Laravel/Apiato này.
 - Tuân thủ KISS, YAGNI, DRY. Ưu tiên thay đổi nhỏ, dễ đọc, dễ rollback.
 - Không mở rộng scope ngoài yêu cầu. Chỉ sửa đúng phần liên quan trực tiếp đến task.
 - Không tự ý format/refactor code lân cận nếu không cần thiết, tránh git noise và regression.
