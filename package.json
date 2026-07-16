@@ -1,6 +1,9 @@
 {
     "private": true,
     "scripts": {
+        "prepare": "husky",
+        "quality:precommit": "node scripts/precommit-quality-check.cjs",
+        "format:php": "vendor/bin/pint --dirty",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
@@ -12,6 +15,7 @@
     "devDependencies": {
         "apidoc": "^0.51.1",
         "axios": "^0.25",
+        "husky": "^9.1.7",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
         "postcss": "^8.4.21"

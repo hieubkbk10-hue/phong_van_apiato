@@ -44,8 +44,9 @@
     "require-dev": {
         "ext-intl": "*",
         "ext-json": "*",
-        "friendsofphp/php-cs-fixer": "^3.8.0",
         "fakerphp/faker": "^1.19.1",
+        "friendsofphp/php-cs-fixer": "^3.8.0",
+        "laravel/pint": "^1.29",
         "laravel/sail": "^1.13.10",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

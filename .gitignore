@@ -14,6 +14,7 @@ yarn-error.log
 /.vscode
 .env.testing
 storage/logs/laravel.log
+storage/logs/pre-commit*.log
 /public/uploads/
 /laradock*/
 _ide_helper*.php
