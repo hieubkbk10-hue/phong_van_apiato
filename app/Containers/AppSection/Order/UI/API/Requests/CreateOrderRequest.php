@@ -2,6 +2,7 @@
 
 namespace App\Containers\AppSection\Order\UI\API\Requests;
 
+use App\Containers\AppSection\Order\Models\Order;
 use App\Ship\Parents\Requests\Request as ParentRequest;
 
 class CreateOrderRequest extends ParentRequest
@@ -45,12 +46,12 @@ class CreateOrderRequest extends ParentRequest
             // Đơn hàng
             'delivery_date' => 'required|date|after_or_equal:today',
             'shipping_carrier' => 'required|string|max:255',
-            'payment_method' => 'required|string|in:COD,CASH,BANK_TRANSFER,DEBT',
+            'payment_method' => 'required|string|in:'.implode(',', [Order::PAYMENT_COD, Order::PAYMENT_CASH, Order::PAYMENT_BANK_TRANSFER, Order::PAYMENT_DEBT]),
 
             // Validate có điều kiện cho hình thức thanh toán
-            'debt_days' => 'required_if:payment_method,DEBT|integer|min:1',
-            'bank_name' => 'required_if:payment_method,BANK_TRANSFER|string|max:255',
-            'bank_account' => 'required_if:payment_method,BANK_TRANSFER|string|max:255',
+            'debt_days' => 'required_if:payment_method,'.Order::PAYMENT_DEBT.'|integer|min:1',
+            'bank_name' => 'required_if:payment_method,'.Order::PAYMENT_BANK_TRANSFER.'|string|max:255',
+            'bank_account' => 'required_if:payment_method,'.Order::PAYMENT_BANK_TRANSFER.'|string|max:255',
 
             // Tiền bạc
             'down_payment' => 'numeric|min:0',

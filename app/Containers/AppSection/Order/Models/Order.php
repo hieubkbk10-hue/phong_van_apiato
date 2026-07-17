@@ -8,6 +8,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends ParentModel
 {
+    // Trạng thái đơn hàng
+    public const STATUS_PENDING = 'pending';
+
+    public const STATUS_PROCESSING = 'processing';
+
+    public const STATUS_COMPLETED = 'completed';
+
+    public const STATUS_CANCELLED = 'cancelled';
+
+    // Phương thức thanh toán
+    public const PAYMENT_COD = 'COD';
+
+    public const PAYMENT_CASH = 'CASH';
+
+    public const PAYMENT_BANK_TRANSFER = 'BANK_TRANSFER';
+
+    public const PAYMENT_DEBT = 'DEBT';
+
     protected $fillable = [
         'order_code',
         'customer_id',
