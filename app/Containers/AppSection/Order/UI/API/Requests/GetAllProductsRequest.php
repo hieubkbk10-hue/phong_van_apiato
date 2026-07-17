@@ -22,10 +22,10 @@ class GetAllProductsRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'limit'    => 'integer|min:1|max:100',
-            'page'     => 'integer|min:1',
-            'search'   => 'nullable|string',
-            'orderBy'  => 'nullable|string',
+            'limit' => 'integer|min:1|max:100',
+            'page' => 'integer|min:1',
+            'search' => 'nullable|string',
+            'orderBy' => 'nullable|string',
             'sortedBy' => 'nullable|in:asc,desc',
         ];
     }

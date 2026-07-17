@@ -10,6 +10,8 @@ use App\Containers\AppSection\Order\UI\API\Tests\ApiTestCase;
  *
  * @group order
  * @group api
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class DeleteOrderTest extends ApiTestCase
 {
@@ -20,8 +22,9 @@ class DeleteOrderTest extends ApiTestCase
         'roles' => '',
     ];
 
-    public function testDeleteExistingOrder(): void
+    public function test_delete_existing_order(): void
     {
+        /** @var Order $order */
         $order = Order::factory()->create();
 
         $response = $this->injectId($order->id)->makeCall();
@@ -29,7 +32,7 @@ class DeleteOrderTest extends ApiTestCase
         $response->assertStatus(204);
     }
 
-    public function testDeleteNonExistingOrder(): void
+    public function test_delete_non_existing_order(): void
     {
         $invalidId = 7777;
 
@@ -42,13 +45,13 @@ class DeleteOrderTest extends ApiTestCase
     // add some roles and permissions to this route's request
     // then add them to the $access array above
     // uncomment this test to test accesses
-//    public function testGivenHaveNoAccess_CannotDeleteOrder(): void
-//    {
-//        $this->getTestingUserWithoutAccess();
-//        $order = Order::factory()->create();
-//
-//        $response = $this->injectId($order->id)->makeCall();
-//
-//        $response->assertStatus(403);
-//    }
+    //    public function testGivenHaveNoAccess_CannotDeleteOrder(): void
+    //    {
+    //        $this->getTestingUserWithoutAccess();
+    //        $order = Order::factory()->create();
+    //
+    //        $response = $this->injectId($order->id)->makeCall();
+    //
+    //        $response->assertStatus(403);
+    //    }
 }

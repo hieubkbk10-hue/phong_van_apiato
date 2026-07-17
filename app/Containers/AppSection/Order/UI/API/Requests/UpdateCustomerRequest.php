@@ -22,8 +22,8 @@ class UpdateCustomerRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'name'    => 'sometimes|string|max:255',
-            'phone'   => 'sometimes|string|max:15|unique:customers,phone,' . $this->id,
+            'name' => 'sometimes|string|max:255',
+            'phone' => 'sometimes|string|max:15|unique:customers,phone,'.$this->id,
             'address' => 'sometimes|string|max:500',
         ];
     }

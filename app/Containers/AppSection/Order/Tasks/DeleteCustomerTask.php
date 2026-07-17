@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Containers\AppSection\Order\Tasks;
+
+use App\Containers\AppSection\Order\Data\Repositories\CustomerRepository;
+use App\Ship\Exceptions\DeleteResourceFailedException;
+use App\Ship\Exceptions\NotFoundException;
+use App\Ship\Parents\Tasks\Task as ParentTask;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+class DeleteCustomerTask extends ParentTask
+{
+    public function __construct(
+        protected CustomerRepository $repository
+    ) {}
+
+    /**
+     * @throws NotFoundException
+     * @throws DeleteResourceFailedException
+     */
+    public function run($id): int
+    {
+        try {
+            return $this->repository->delete($id);
+        } catch (ModelNotFoundException) {
+            throw new NotFoundException;
+        } catch (Exception) {
+            throw new DeleteResourceFailedException;
+        }
+    }
+}

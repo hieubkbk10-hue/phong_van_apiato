@@ -11,9 +11,9 @@ class Product extends ParentModel
     use SoftDeletes;
 
     protected $fillable = [
-        "name",
-        "price",
-        "stock"
+        'name',
+        'price',
+        'stock',
     ];
 
     protected $hidden = [
@@ -21,8 +21,8 @@ class Product extends ParentModel
     ];
 
     protected $casts = [
-        "price" => "float",
-        "stock" => "integer",
+        'price' => 'float',
+        'stock' => 'integer',
     ];
 
     /**

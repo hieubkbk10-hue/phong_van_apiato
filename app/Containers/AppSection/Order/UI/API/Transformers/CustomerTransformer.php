@@ -18,15 +18,15 @@ class CustomerTransformer extends ParentTransformer
     public function transform(Customer $customer): array
     {
         $response = [
-            'object'  => $customer->getResourceKey(),
-            'id'      => $customer->getHashedKey(), // Mã hóa ID của khách hàng
-            'name'    => $customer->name,
-            'phone'   => $customer->phone,
+            'object' => $customer->getResourceKey(),
+            'id' => $customer->getHashedKey(), // Mã hóa ID của khách hàng
+            'name' => $customer->name,
+            'phone' => $customer->phone,
             'address' => $customer->address,
         ];
 
         return $this->ifAdmin([
-            'real_id'    => $customer->id,
+            'real_id' => $customer->id,
             'created_at' => $customer->created_at,
             'updated_at' => $customer->updated_at,
         ], $response);

@@ -37,30 +37,30 @@ class CreateOrderRequest extends ParentRequest
     {
         return [
             // Khách hàng
-            'customer_id'       => 'nullable|exists:customers,id',
-            'customer_name'     => 'required_without:customer_id|string|max:255',
-            'customer_phone'    => 'required_without:customer_id|string|max:15|unique:customers,phone',
-            'customer_address'  => 'required_without:customer_id|string|max:500',
+            'customer_id' => 'nullable|exists:customers,id',
+            'customer_name' => 'required_without:customer_id|string|max:255',
+            'customer_phone' => 'required_without:customer_id|string|max:15|unique:customers,phone',
+            'customer_address' => 'required_without:customer_id|string|max:500',
 
             // Đơn hàng
-            'delivery_date'     => 'required|date|after_or_equal:today',
-            'shipping_carrier'  => 'required|string|max:255',
-            'payment_method'    => 'required|string|in:COD,CASH,BANK_TRANSFER,DEBT',
-            
+            'delivery_date' => 'required|date|after_or_equal:today',
+            'shipping_carrier' => 'required|string|max:255',
+            'payment_method' => 'required|string|in:COD,CASH,BANK_TRANSFER,DEBT',
+
             // Validate có điều kiện cho hình thức thanh toán
-            'debt_days'         => 'required_if:payment_method,DEBT|integer|min:1',
-            'bank_name'         => 'required_if:payment_method,BANK_TRANSFER|string|max:255',
-            'bank_account'      => 'required_if:payment_method,BANK_TRANSFER|string|max:255',
+            'debt_days' => 'required_if:payment_method,DEBT|integer|min:1',
+            'bank_name' => 'required_if:payment_method,BANK_TRANSFER|string|max:255',
+            'bank_account' => 'required_if:payment_method,BANK_TRANSFER|string|max:255',
 
             // Tiền bạc
-            'down_payment'      => 'numeric|min:0',
-            'shipping_fee'      => 'numeric|min:0',
+            'down_payment' => 'numeric|min:0',
+            'shipping_fee' => 'numeric|min:0',
 
             // Chi tiết sản phẩm
-            'items'              => 'required|array|min:1',
+            'items' => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
-            'items.*.price'      => 'required|numeric|min:0',
-            'items.*.quantity'   => 'required|integer|min:1',
+            'items.*.price' => 'required|numeric|min:0',
+            'items.*.quantity' => 'required|integer|min:1',
         ];
     }
 

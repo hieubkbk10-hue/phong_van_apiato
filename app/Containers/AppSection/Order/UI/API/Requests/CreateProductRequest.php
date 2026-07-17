@@ -22,7 +22,7 @@ class CreateProductRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'name'  => 'required|string|max:255|unique:products,name',
+            'name' => 'required|string|max:255|unique:products,name',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
         ];

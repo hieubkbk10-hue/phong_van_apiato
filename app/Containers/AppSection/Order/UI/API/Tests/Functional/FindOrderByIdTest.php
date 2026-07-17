@@ -4,7 +4,6 @@ namespace App\Containers\AppSection\Order\UI\API\Tests\Functional;
 
 use App\Containers\AppSection\Order\Models\Order;
 use App\Containers\AppSection\Order\UI\API\Tests\ApiTestCase;
-use Hashids;
 use Illuminate\Testing\Fluent\AssertableJson;
 
 /**
@@ -12,6 +11,8 @@ use Illuminate\Testing\Fluent\AssertableJson;
  *
  * @group order
  * @group api
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class FindOrderByIdTest extends ApiTestCase
 {
@@ -22,22 +23,22 @@ class FindOrderByIdTest extends ApiTestCase
         'roles' => '',
     ];
 
-    public function testFindOrder(): void
+    public function test_find_order(): void
     {
+        /** @var Order $order */
         $order = Order::factory()->create();
 
         $response = $this->injectId($order->id)->makeCall();
 
         $response->assertStatus(200);
         $response->assertJson(
-            fn (AssertableJson $json) =>
-                $json->has('data')
-                    ->where('data.id', Hashids::encode($order->id))
-                    ->etc()
+            fn (AssertableJson $json) => $json->has('data')
+                ->where('data.id', $order->getHashedKey())
+                ->etc()
         );
     }
 
-    public function testFindNonExistingOrder(): void
+    public function test_find_non_existing_order(): void
     {
         $invalidId = 7777;
 
@@ -46,18 +47,18 @@ class FindOrderByIdTest extends ApiTestCase
         $response->assertStatus(404);
     }
 
-    public function testFindFilteredOrderResponse(): void
+    public function test_find_filtered_order_response(): void
     {
+        /** @var Order $order */
         $order = Order::factory()->create();
 
-        $response = $this->injectId($order->id)->endpoint($this->endpoint . '?filter=id')->makeCall();
+        $response = $this->injectId($order->id)->endpoint($this->endpoint.'?filter=id')->makeCall();
 
         $response->assertStatus(200);
         $response->assertJson(
-            fn (AssertableJson $json) =>
-                $json->has('data')
-                    ->where('data.id', $order->getHashedKey())
-                    ->missing('data.object')
+            fn (AssertableJson $json) => $json->has('data')
+                ->where('data.id', $order->getHashedKey())
+                ->missing('data.object')
         );
     }
 
@@ -66,21 +67,21 @@ class FindOrderByIdTest extends ApiTestCase
     // uncomment this test
     // modify it to your needs
     // test the relation
-//    public function testFindOrderWithRelation(): void
-//    {
-//        $order = Order::factory()->create();
-//        $relation = 'roles';
-//
-//        $response = $this->injectId($order->id)->endpoint($this->endpoint . "?include=$relation")->makeCall();
-//
-//        $response->assertStatus(200);
-//        $response->assertJson(
-//            fn (AssertableJson $json) =>
-//              $json->has('data')
-//                  ->where('data.id', $order->getHashedKey())
-//                  ->count("data.$relation.data", 1)
-//                  ->where("data.$relation.data.0.name", 'something')
-//                  ->etc()
-//        );
-//    }
+    //    public function testFindOrderWithRelation(): void
+    //    {
+    //        $order = Order::factory()->create();
+    //        $relation = 'roles';
+    //
+    //        $response = $this->injectId($order->id)->endpoint($this->endpoint . "?include=$relation")->makeCall();
+    //
+    //        $response->assertStatus(200);
+    //        $response->assertJson(
+    //            fn (AssertableJson $json) =>
+    //              $json->has('data')
+    //                  ->where('data.id', $order->getHashedKey())
+    //                  ->count("data.$relation.data", 1)
+    //                  ->where("data.$relation.data.0.name", 'something')
+    //                  ->etc()
+    //        );
+    //    }
 }

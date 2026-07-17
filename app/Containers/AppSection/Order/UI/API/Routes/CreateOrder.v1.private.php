@@ -2,12 +2,15 @@
 
 /**
  * @apiGroup           Order
+ *
  * @apiName            CreateOrder
  *
  * @api                {POST} /v1/orders Create Order
+ *
  * @apiDescription     Endpoint description here...
  *
  * @apiVersion         1.0.0
+ *
  * @apiPermission      Authenticated ['permissions' => '', 'roles' => '']
  *
  * @apiHeader          {String} accept=application/json
@@ -52,4 +55,3 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('orders', [CreateOrderController::class, 'createOrder'])
     ->middleware(['auth:api']);
-

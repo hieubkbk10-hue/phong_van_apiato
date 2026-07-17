@@ -22,8 +22,8 @@ class CreateCustomerRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            'name'    => 'required|string|max:255',
-            'phone'   => 'required|string|max:15|unique:customers,phone',
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:15|unique:customers,phone',
             'address' => 'required|string|max:500',
         ];
     }

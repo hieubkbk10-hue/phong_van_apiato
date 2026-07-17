@@ -2,12 +2,15 @@
 
 /**
  * @apiGroup           Order
+ *
  * @apiName            FindOrderById
  *
  * @api                {GET} /v1/orders/:id Find Order By Id
+ *
  * @apiDescription     Endpoint description here...
  *
  * @apiVersion         1.0.0
+ *
  * @apiPermission      Authenticated ['permissions' => '', 'roles' => '']
  *
  * @apiHeader          {String} accept=application/json
@@ -37,4 +40,3 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('orders/{id}', [FindOrderByIdController::class, 'findOrderById'])
     ->middleware(['auth:api']);
-

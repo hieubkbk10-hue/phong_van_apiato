@@ -19,14 +19,14 @@ class ProductTransformer extends ParentTransformer
     {
         $response = [
             'object' => $product->getResourceKey(),
-            'id'     => $product->getHashedKey(), // Mã hóa ID của sản phẩm
-            'name'   => $product->name,
-            'price'  => $product->price,
-            'stock'  => $product->stock,
+            'id' => $product->getHashedKey(), // Mã hóa ID của sản phẩm
+            'name' => $product->name,
+            'price' => $product->price,
+            'stock' => $product->stock,
         ];
 
         return $this->ifAdmin([
-            'real_id'    => $product->id,
+            'real_id' => $product->id,
             'created_at' => $product->created_at,
             'updated_at' => $product->updated_at,
         ], $response);

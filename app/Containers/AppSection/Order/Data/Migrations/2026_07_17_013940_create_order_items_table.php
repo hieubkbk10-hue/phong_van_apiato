@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            //snapshot lại tránh sau này bị mất 
+            // snapshot lại tránh sau này bị mất
             $table->string('product_name');
-            $table->decimal('price',15,2);
+            $table->decimal('price', 15, 2);
             $table->integer('quantity');
 
             // Nếu xoá mất sản phẩm thì chỉ set null product id thôi .Không xoá order_item

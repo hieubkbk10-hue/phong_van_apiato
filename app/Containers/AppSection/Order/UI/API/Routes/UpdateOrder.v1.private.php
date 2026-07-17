@@ -2,18 +2,22 @@
 
 /**
  * @apiGroup           Order
+ *
  * @apiName            UpdateOrder
  *
  * @api                {PATCH} /v1/orders/:id Update Order
+ *
  * @apiDescription     Endpoint description here...
  *
  * @apiVersion         1.0.0
+ *
  * @apiPermission      Authenticated ['permissions' => '', 'roles' => '']
  *
  * @apiHeader          {String} accept=application/json
  * @apiHeader          {String} authorization=Bearer
  *
  * @apiParam           {String} id ID của đơn hàng cần cập nhật (HashID)
+ *
  * @apiBody           {String} [customer_id] ID khách hàng cũ
  * @apiBody           {String} [delivery_date] Ngày giao hàng (YYYY-MM-DD)
  * @apiBody           {String} [shipping_carrier] Đơn vị vận chuyển
@@ -50,4 +54,3 @@ use Illuminate\Support\Facades\Route;
 
 Route::patch('orders/{id}', [UpdateOrderController::class, 'updateOrder'])
     ->middleware(['auth:api']);
-

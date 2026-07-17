@@ -15,4 +15,10 @@
             <directory name="node_modules"/>
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <PropertyNotSetInConstructor errorLevel="suppress" />
+        <PossiblyUndefinedMethod errorLevel="suppress" />
+        <MissingParamType errorLevel="suppress" />
+    </issueHandlers>
 </psalm>

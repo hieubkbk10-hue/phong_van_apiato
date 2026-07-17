@@ -11,9 +11,9 @@ class Customer extends ParentModel
     use SoftDeletes;
 
     protected $fillable = [
-        "name",
-        "phone",
-        "address"
+        'name',
+        'phone',
+        'address',
     ];
 
     protected $hidden = [
