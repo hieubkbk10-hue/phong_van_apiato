@@ -18,7 +18,7 @@
 
 ## 3. Stack và phạm vi dự án
 
-- Repo này là Laravel 9 / PHP 8.0.2 theo kiến trúc Apiato, Porto.
+- Repo này là Laravel 9 / PHP >8.0.2 theo kiến trúc Apiato, Porto.
 - Code nghiệp vụ nằm trong `app/Containers/AppSection/<Container>`.
 - Code dùng chung, base class, middleware, helper, config nền tảng nằm trong `app/Ship`.
 - Frontend asset hiện dùng Laravel Mix/Webpack qua `webpack.mix.js`, entry chính là `resources/js/app.js` và `resources/css/app.css`.
