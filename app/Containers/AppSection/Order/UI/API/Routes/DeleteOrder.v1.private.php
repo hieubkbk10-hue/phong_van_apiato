@@ -13,12 +13,11 @@
  * @apiHeader          {String} accept=application/json
  * @apiHeader          {String} authorization=Bearer
  *
- * @apiParam           {String} parameters here...
+ * @apiParam           {String} id ID của đơn hàng cần xóa (HashID)
  *
  * @apiSuccessExample  {json} Success-Response:
- * HTTP/1.1 200 OK
+ * HTTP/1.1 204 No Content
  * {
- *     // Insert the response of the request here...
  * }
  */
 

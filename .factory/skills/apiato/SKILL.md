@@ -63,7 +63,45 @@ Use these as hard rules when generating or reviewing Apiato code:
 - Location: `UI/API/Routes`.
 - File pattern: `{ActionName}.v1.private.php` or `{ActionName}.v1.public.php`.
 - Private routes use auth middleware/guard.
+- **Quy tắc viết DocBlock cho tài liệu API (`apidoc`)**:
+  - Bắt buộc viết DocBlock comment `@api` đầy đủ ở đầu mỗi file Route mới. Không được bỏ sót.
+  - Phân biệt rõ các thẻ để tránh lỗi cảnh báo (warnings):
+    - **`@apiParam`**: Chỉ dùng cho tham số nằm trong URL (ví dụ: `/orders/:id` thì dùng `@apiParam {String} id`).
+    - **`@apiBody`**: Dùng cho tham số truyền trong Request Body (ví dụ: JSON payload của POST/PUT/PATCH).
+    - **`@apiQuery`**: Dùng cho tham số truyền qua URL Query (ví dụ: `?limit=15`).
+  - Chạy lệnh `php artisan apiato:apidoc` đầu ra phải sạch sẽ, không có bất kỳ warning nào.
+  - **Ví dụ cấu trúc DocBlock chuẩn**:
+    ```php
+    /**
+     * @apiGroup           Order
+     * @apiName            UpdateOrder
+     *
+     * @api                {PATCH} /v1/orders/:id Update Order
+     * @apiDescription     Cập nhật thông tin đơn hàng
+     *
+     * @apiHeader          {String} accept=application/json
+     * @apiHeader          {String} authorization=Bearer
+     *
+     * @apiParam           {String} id ID của đơn hàng nằm trên URL (bắt buộc)
+     *
+     * @apiBody            {String} [shipping_carrier] Đơn vị vận chuyển (truyền trong JSON body)
+     * @apiBody            {Number} [shipping_fee] Phí giao hàng (truyền trong JSON body)
+     *
+     * @apiQuery           {String} [include] Load các quan hệ (truyền qua URL query, ví dụ: ?include=items)
+     *
+     * @apiSuccessExample  {json} Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     *     "data": {
+     *         "object": "Order",
+     *         "id": "XyZ123"
+     *     }
+     * }
+     */
+    ```
 - If route has `@api` docs, update it when endpoint behavior changes.
+
+
 
 ### Request
 

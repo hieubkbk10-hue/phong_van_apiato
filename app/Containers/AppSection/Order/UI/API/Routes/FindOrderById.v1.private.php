@@ -13,12 +13,22 @@
  * @apiHeader          {String} accept=application/json
  * @apiHeader          {String} authorization=Bearer
  *
- * @apiParam           {String} parameters here...
+ * @apiParam           {String} id ID của đơn hàng (HashID)
  *
  * @apiSuccessExample  {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
- *     // Insert the response of the request here...
+ *     "data": {
+ *         "object": "Order",
+ *         "id": "XyZ123",
+ *         "order_code": "DH-20260717-0001",
+ *         "delivery_date": "2026-07-20",
+ *         "shipping_carrier": "Giao Hàng Nhanh",
+ *         "payment_method": "COD",
+ *         "status": "pending",
+ *         "down_payment": 0,
+ *         "shipping_fee": 30000
+ *     }
  * }
  */
 

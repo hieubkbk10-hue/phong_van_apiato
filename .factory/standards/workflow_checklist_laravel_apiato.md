@@ -115,8 +115,13 @@ Ví dụ cực gọn:
 - Migration/model ổn.
 - Request validate/authorize.
 - Porto đúng tầng.
+- Route bắt buộc có DocBlock `@api` đầy đủ:
+  - Phân biệt rõ: `@apiParam` (cho URL params như `:id`), `@apiBody` (cho JSON body payload), và `@apiQuery` (cho query string).
+- Chạy lệnh `php artisan apiato:apidoc` thành công, đầu ra sạch sẽ và **không còn bất kỳ cảnh báo (warning) nào**.
 - Query có pagination, index, không N+1.
 - Transformer sạch dữ liệu nhạy cảm.
 - Frontend type và state đủ.
 - Test/validator đã chạy.
 - Không file rác, không secret, không ngoài scope.
+
+
