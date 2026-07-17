@@ -22,7 +22,9 @@ class CreateCustomerRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // Sẽ validate name, phone, address ở đây
+            'name'    => 'required|string|max:255',
+            'phone'   => 'required|string|max:15|unique:customers,phone',
+            'address' => 'required|string|max:500',
         ];
     }
 

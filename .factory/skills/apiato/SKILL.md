@@ -77,9 +77,11 @@ Use these as hard rules when generating or reviewing Apiato code:
 - Put route ID in both `$urlParameters` and `$decode` when validating hashed URL IDs.
 - Use `sanitizeInput([...])` in Actions for create/update payload allowlisting.
 - Always cap strings with `max`, especially create/update fields.
+- Use `sometimes` validation rule for fields in Update Requests to allow partial resource updates.
 - Validate list query params: `limit`, `page`, `search`, `searchFields`, `orderBy`, `sortedBy`, `filter`, `include`.
 - For create/update, align validation max lengths with database column lengths.
 - For private endpoints, never leave `authorize()` as `true` unless intentionally public-to-authenticated and documented.
+
 
 ### Controller
 

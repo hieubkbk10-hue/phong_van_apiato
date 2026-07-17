@@ -22,7 +22,9 @@ class UpdateCustomerRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // Sẽ validate name, phone, address khi cập nhật ở đây
+            'name'    => 'sometimes|string|max:255',
+            'phone'   => 'sometimes|string|max:15|unique:customers,phone,' . $this->id,
+            'address' => 'sometimes|string|max:500',
         ];
     }
 

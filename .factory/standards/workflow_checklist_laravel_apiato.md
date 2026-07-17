@@ -39,10 +39,12 @@ Ví dụ cực gọn:
 
 - Request riêng cho endpoint cần validate/authorize.
 - Validate: required, nullable, type, max/min, exists, unique.
+- Dùng `sometimes` cho các trường trong Update Request để hỗ trợ cập nhật từng phần (partial update) an toàn.
 - Authorize cho API private.
 - Apiato: `$access`, `$decode`, `$urlParameters`.
 - Hash id decode ở Request.
 - Không tin input client.
+
 
 ## 4. Porto Layer
 

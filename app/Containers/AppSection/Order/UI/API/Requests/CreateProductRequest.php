@@ -22,7 +22,9 @@ class CreateProductRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // Sẽ validate name, price, stock ở đây
+            'name'  => 'required|string|max:255|unique:products,name',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
         ];
     }
 

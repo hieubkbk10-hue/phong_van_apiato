@@ -22,7 +22,9 @@ class UpdateProductRequest extends ParentRequest
     public function rules(): array
     {
         return [
-            // Sẽ validate name, price, stock khi cập nhật ở đây
+            'name'  => 'sometimes|string|max:255|unique:products,name,' . $this->id,
+            'price' => 'sometimes|numeric|min:0',
+            'stock' => 'sometimes|integer|min:0',
         ];
     }
 
