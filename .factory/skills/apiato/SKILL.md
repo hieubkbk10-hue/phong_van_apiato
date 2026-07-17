@@ -130,20 +130,22 @@ Use these as hard rules when generating or reviewing Apiato code:
 ### Action
 
 - Orchestrates use case.
-- Calls one or more Tasks.
-- Do not query DB directly.
+- Bắt buộc lập kế hoạch và phân rã đầy đủ các Task cần thiết trước khi viết Action.
+- Calls one or more Tasks. Điều phối 100% qua các Task, tuyệt đối không viết logic truy vấn DB hay xử lý Eloquent trực tiếp trong Action.
 - Owns workflow-level transactions when multiple write Tasks must succeed/fail together.
 - Throw meaningful Apiato/Ship exceptions.
 
 ### Task
 
-- One small job.
+- One small job (Single Responsibility Principle - SRP).
+- Phân rã triệt để: Khi thực hiện một luồng nghiệp vụ phức tạp, phải tạo đầy đủ từng Task nhỏ độc lập (ví dụ: tạo riêng Task lấy chi tiết, Task tạo mới, Task trừ kho...) thay vì gom nhiều logic khác nhau vào một Task duy nhất làm mất đi tính tái sử dụng.
 - Do not accept Request object.
 - Do not call Action.
 - Avoid Task calling Task unless the existing codebase has an explicit pattern.
 - Use Repository for data access.
 - Catch DB/library failures and throw standard exceptions.
 - Do not start broad workflow transactions in Task. Only use local transaction in a Task for a truly atomic low-level data operation that cannot be split.
+
 
 ### Repository
 

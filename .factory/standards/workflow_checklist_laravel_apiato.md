@@ -49,9 +49,14 @@ Ví dụ cực gọn:
 ## 4. Porto Layer
 
 - Flow: Route -> Controller -> Request -> Action -> Task -> Repository/Model -> Transformer.
-- Controller mỏng.
-- Action điều phối.
-- Task một nhiệm vụ.
+- Controller mỏng: Chỉ nhận Request, gọi duy nhất 1 Action và trả về response.
+- Action điều phối:
+  - Chỉ chứa logic điều phối luồng nghiệp vụ.
+  - Không truy vấn DB trực tiếp. Bắt buộc dùng `DB::transaction()` nếu có nhiều bước ghi dữ liệu.
+- Task một nhiệm vụ (Single Responsibility - SRP):
+  - Phân rã rõ ràng và tạo đầy đủ tất cả các Task nhỏ hỗ trợ (ví dụ: tạo riêng `CreateCustomerTask`, `FindProductByIdTask`, `UpdateProductStockTask`, `CreateOrderItemTask`...) thay vì gộp chung vào 1 Task lớn.
+  - Đảm bảo tạo đủ tất cả các Task liên quan trước khi triển khai Action để đảm bảo tính tái sử dụng cao nhất.
+
 - Repository data access.
 - Tái sử dụng Task/Action có sẵn.
 - Không query DB trong Controller.
