@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Schema;
  *
  * @group order
  * @group unit
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class OrdersMigrationTest extends TestCase
 {
@@ -17,9 +19,20 @@ class OrdersMigrationTest extends TestCase
     {
         $columns = [
             'id',
-            // add your migration columns
+            'order_code',
+            'delivery_date',
+            'shipping_carrier',
+            'payment_method',
+            'debt_days',
+            'bank_name',
+            'bank_account',
+            'down_payment',
+            'shipping_fee',
+            'status',
+            'customer_id',
             'created_at',
             'updated_at',
+            'deleted_at',
         ];
 
         foreach ($columns as $column) {

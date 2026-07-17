@@ -12,32 +12,37 @@ use App\Ship\Exceptions\NotFoundException;
  *
  * @group order
  * @group unit
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class UpdateOrderTaskTest extends TestCase
 {
-    // TODO TEST
-    public function testUpdateOrder(): void
+    public function test_update_order(): void
     {
+        /** @var Order $order */
         $order = Order::factory()->create([
-            // 'some_field' => 'new_field_value',
+            'shipping_carrier' => 'GHN',
         ]);
         $data = [
-            // 'some_field' => 'new_field_value',
+            'shipping_carrier' => 'GHTK',
         ];
 
-        $updatedOrder = app(UpdateOrderTask::class)->run($data, $order->id);
+        /** @var UpdateOrderTask $updateOrderTask */
+        $updateOrderTask = app(UpdateOrderTask::class);
+        $updatedOrder = $updateOrderTask->run($data, $order->id);
 
         $this->assertEquals($order->id, $updatedOrder->id);
-        // assert if fields are updated
-        // $this->assertEquals($data['some_field'], $updatedOrder->some_field);
+        $this->assertEquals('GHTK', $updatedOrder->shipping_carrier);
     }
 
-    public function testUpdateOrderWithInvalidId(): void
+    public function test_update_order_with_invalid_id(): void
     {
         $this->expectException(NotFoundException::class);
 
         $noneExistingId = 777777;
 
-        app(UpdateOrderTask::class)->run([], $noneExistingId);
+        /** @var UpdateOrderTask $updateOrderTask */
+        $updateOrderTask = app(UpdateOrderTask::class);
+        $updateOrderTask->run([], $noneExistingId);
     }
 }
